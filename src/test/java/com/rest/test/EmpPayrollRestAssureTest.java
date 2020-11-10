@@ -33,6 +33,7 @@ public class EmpPayrollRestAssureTest {
         employeeList.then().body("id", Matchers.hasItems(2,3));
         employeeList.then().body("name", Matchers.hasItems("Marsha May", "Mia"));
     }
+    // UC1
     @Test
     public  void givenEmployee_OnPostMethod_ShouldReturnAddedEmployee() {
         RestAssured.given().contentType(ContentType.JSON)
@@ -44,6 +45,7 @@ public class EmpPayrollRestAssureTest {
                 .body("id", Matchers.any(Integer.class))
                 .body("name", Matchers.is("Modi"));
     }
+    // UC2
     @Test
     public void CheckMultiple_Post_Method_Threads() {
         String[] name = {"Abhinav", "Sumit", "Abhishek"};
@@ -67,5 +69,18 @@ public class EmpPayrollRestAssureTest {
                 e.printStackTrace();
             }
         }
+    }
+    //UC3
+    @Test
+    public void givenEmployee_WhenUpdate_ShouldReturnUpdatedEmployee() {
+        RestAssured.given().contentType(ContentType.JSON)
+                .accept(ContentType.JSON)
+                .body("{\"name\": \"xyz\", \"salary\":\"550000\"}")
+                .when()
+                .put("/employees/update/" +empId)
+                .then()
+                .body("id", Matchers.any(Integer.class))
+                .body("name", Matchers.is("xyz"))
+                .body("salary", Matchers.is("550000"));
     }
 }
