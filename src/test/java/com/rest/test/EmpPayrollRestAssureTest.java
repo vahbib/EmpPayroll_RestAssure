@@ -83,4 +83,10 @@ public class EmpPayrollRestAssureTest {
                 .body("name", Matchers.is("xyz"))
                 .body("salary", Matchers.is("550000"));
     }
+    // UC4
+    @Test
+    public void ListEmployee() {
+        Response employeeList = getEmployeeList();
+        System.out.println("string is " + employeeList.asString());
+    }
 }
