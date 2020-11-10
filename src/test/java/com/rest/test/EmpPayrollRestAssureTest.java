@@ -7,6 +7,8 @@ import org.hamcrest.Matchers;
 import org.junit.Before;
 import org.junit.Test;
 
+import java.util.HashMap;
+
 public class EmpPayrollRestAssureTest {
 
     private int empId;
@@ -41,5 +43,29 @@ public class EmpPayrollRestAssureTest {
                 .then()
                 .body("id", Matchers.any(Integer.class))
                 .body("name", Matchers.is("Modi"));
+    }
+    @Test
+    public void CheckMultiple_Post_Method_Threads() {
+        String[] name = {"Abhinav", "Sumit", "Abhishek"};
+        String[] salary = {"1000", "2000", "3000"};
+
+        for (int i = 0; i < 3; i++) {
+            HashMap<String, String> map = new HashMap<>();
+            map.put("name", name[i]);
+            map.put("salary", salary[i]);
+            Runnable task = () -> {
+                RestAssured.given().contentType(ContentType.JSON)
+                        .accept(ContentType.JSON)
+                        .body(map)
+                        .when().post("/employees/create");
+            };
+            Thread t = new Thread(task);
+            t.start();
+            try {
+                t.sleep(2000);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }
     }
 }
