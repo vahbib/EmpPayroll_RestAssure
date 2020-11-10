@@ -23,4 +23,23 @@ public class EmpPayrollRestAssureTest {
         System.out.println(response.getBody());
         return response;
     }
+    @Test
+    public void OnCallingGetEmployeeList_ShouldReturnEmployeeList() {
+        Response employeeList = getEmployeeList();
+        System.out.println("String is "+ employeeList.asString());
+
+        employeeList.then().body("id", Matchers.hasItems(2,3));
+        employeeList.then().body("name", Matchers.hasItems("Marsha May", "Mia"));
+    }
+    @Test
+    public  void givenEmployee_OnPostMethod_ShouldReturnAddedEmployee() {
+        RestAssured.given().contentType(ContentType.JSON)
+                .accept(ContentType.JSON)
+                .body("{\"name\": \"Modi\", \"salary\":\"10000000000\"}")
+                .when()
+                .post("/employees/create")
+                .then()
+                .body("id", Matchers.any(Integer.class))
+                .body("name", Matchers.is("Modi"));
+    }
 }
