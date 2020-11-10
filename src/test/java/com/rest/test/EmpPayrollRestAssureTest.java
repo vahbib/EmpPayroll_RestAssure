@@ -4,6 +4,7 @@ import io.restassured.RestAssured;
 import io.restassured.http.ContentType;
 import io.restassured.response.Response;
 import org.hamcrest.Matchers;
+import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -88,5 +89,13 @@ public class EmpPayrollRestAssureTest {
     public void ListEmployee() {
         Response employeeList = getEmployeeList();
         System.out.println("string is " + employeeList.asString());
+    }
+    // UC5
+    @Test
+    public void givenEmployee_WhenDelete_ShouldDeleteGivenEmployee() {
+
+        int id = 4;
+        Response response = RestAssured.delete("/employees/delete/" + id);
+        Assert.assertEquals(200, response.getStatusCode());
     }
 }

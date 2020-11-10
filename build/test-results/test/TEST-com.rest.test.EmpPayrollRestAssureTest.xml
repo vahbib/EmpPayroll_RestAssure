@@ -1,30 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="com.rest.test.EmpPayrollRestAssureTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2020-11-10T16:41:05" hostname="DESKTOP-9T3G1G1" time="2.138">
+<testsuite name="com.rest.test.EmpPayrollRestAssureTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2020-11-10T16:48:01" hostname="DESKTOP-9T3G1G1" time="2.002">
   <properties/>
-  <testcase name="ListEmployee" classname="com.rest.test.EmpPayrollRestAssureTest" time="2.138"/>
-  <system-out><![CDATA[io.restassured.internal.RestAssuredResponseImpl@4ba9c859
-string is [
-  {
-    "id": 2,
-    "name": "Marsha May",
-    "salary": "100000"
-  },
-  {
-    "name": "Mia",
-    "salary": "50000",
-    "id": 3
-  },
-  {
-    "name": "xyz",
-    "salary": "550000",
-    "id": 4
-  },
-  {
-    "name": "Modi",
-    "salary": "10000000000",
-    "id": 5
-  }
-]
-]]></system-out>
+  <testcase name="givenEmployee_WhenDelete_ShouldDeleteGivenEmployee" classname="com.rest.test.EmpPayrollRestAssureTest" time="2.002"/>
+  <system-out><![CDATA[]]></system-out>
   <system-err><![CDATA[]]></system-err>
 </testsuite>
